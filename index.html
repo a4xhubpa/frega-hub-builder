@@ -28,7 +28,7 @@
       <form id="form">
         <div class="mb-3">
           <label class="form-label fw-bold">Your idea or special</label>
-          <input type="text" class="form-control form-control-lg" id="topic" placeholder="e.g. Today’s kawakawa latte $6" required>
+          <input type="text" class="form-control form-control-lg" id="topic" placeholder="e.g. Today’s yummy latte $6" required>
         </div>
 
         <div class="row g-3 mb-3">
@@ -45,7 +45,7 @@
           <div class="col-6 col-md-3">
             <label class="form-label">Images</label>
             <select class="form-select" id="images">
-              <option>0</option><option>1</option><option selected>2</option><option>3</option><option>4</option>
+              <option  selected>0</option><option>1</option><option selected>2</option><option>3</option><option>4</option>
             </select>
           </div>
           <div class="col-6 col-md-3">
@@ -93,12 +93,44 @@
         links_count: +document.getElementById('links').value,
         premium: true
       };
-      const res = await fetch(ENDPOINT, {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify(data)
-      });
-      const json = await res.json();
+      const XAI_API_KEY = "YOUR_NEW_SECRET_KEY_HERE";  // ← paste your fresh key here just once
+const XAI_ENDPOINT = "https://api.x.ai/v1/chat/completions";
+
+document.getElementById('form').onsubmit = async e => {
+  e.preventDefault();
+  const data = {
+    business: document.getElementById('topic').value,
+    word_count: +document.getElementById('words').value,
+    images_count: +document.getElementById('images').value,
+    videos_count: +document.getElementById('videos').value,
+    links_count: +document.getElementById('links').value
+  };
+
+  const prompt = `Create a warm, community-focused Frega Hub post.
+Topic: ${data.business}
+Word count: ${data.word_count}
+Images: ${data.images_count}, Videos: ${data.videos_count}, Links: ${data.links_count}
+Include manaakitanga, Growth Points rewards, and end with FREGA10 CTA.`;
+
+  const res = await fetch(XAI_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${XAI_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: "grok-4",
+      messages: [{ role: "user", content: prompt }],
+      temperature: 0.7,
+      max_tokens: 2000
+  });
+
+  const json = await res.json();
+  const html = json.choices[0].message.content;
+  document.getElementById('preview').innerHTML = html;
+  document.getElementById('result').classList.remove('d-none');
+};
+  const json = await res.json();
       document.getElementById('preview').innerHTML = json.html || json.content || json.output || "No content returned";
       document.getElementById('result').classList.remove('d-none');
     };
