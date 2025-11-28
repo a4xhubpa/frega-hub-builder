@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Frega AI Blog Builder – Kia ora!</title>
+  <title>Frega AI Blog Builder – Greetings!</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <style>
     body { background:#f8f9fa; font-family: 'Segoe UI', sans-serif; }
@@ -20,7 +20,7 @@
     <!-- Hero -->
     <div class="hero mb-4">
       <h1 class="display-4 fw-bold">Frega AI Blog Builder</h1>
-      <p class="lead">Kia ora! Turn any idea into a stunning Frega Hub post in seconds.<br>Images, videos, hashtags & FREGA10 reward — ready to paste.</p>
+      <p class="lead"> Greetings! Turn any idea into a stunning Frega Hub post in seconds.<br>Images, videos, hashtags & register — ready to paste.</p>
     </div>
 
     <!-- Form -->
@@ -74,14 +74,14 @@
       <div id="preview" class="border bg-white p-4 rounded shadow mb-3" style="max-height:70vh;overflow:auto;"></div>
       <div class="text-center">
         <button onclick="copy()" class="btn btn-success btn-lg">Copy to Frega Hub</button>
-        <button onclick="speak()" class="btn btn-outline-primary btn-lg ms-3">Play Aloud (NZ voice)</button>
+        <button onclick="speak()" class="btn btn-outline-primary btn-lg ms-3">Play Aloud</button>
       </div>
     </div>
   </div>
 
   <script>
     // ←←← CHANGE THIS LINE TO YOUR REAL ENDPOINT ←←←
-    const ENDPOINT = "https://aiposteditor.services.ai.azure.com/api/agents/frega-blog-agent/invoke";
+    const ENDPOINT = "azure-static-web-apps-happy-sea-0abbfd600.yml";
 
     document.getElementById('form').onsubmit = async e => {
       e.preventDefault();
