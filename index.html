@@ -110,7 +110,7 @@ document.getElementById('form').onsubmit = async e => {
 Topic: ${data.business}
 Word count: ${data.word_count}
 Images: ${data.images_count}, Videos: ${data.videos_count}, Links: ${data.links_count}
-Include manaakitanga, Growth Points rewards, and end with FREGA10 CTA.`;
+Include co-partner, Growth Points rewards, and end with Registration CTA.`;
 
   const res = await fetch(XAI_ENDPOINT, {
     method: 'POST',
@@ -137,7 +137,7 @@ Include manaakitanga, Growth Points rewards, and end with FREGA10 CTA.`;
 
     function copy() {
       navigator.clipboard.writeText(document.getElementById('preview').innerHTML);
-      alert('Copied! Paste into Frega Hub source editor');
+      alert('Copied! Paste into Frega Hub source editor or other social media platform');
     }
     function speak() {
       const text = document.getElementById('preview').textContent;
